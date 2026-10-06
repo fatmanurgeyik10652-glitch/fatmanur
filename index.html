@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183d31">
+  <meta name="description" content="Küçük Kara Balık; doğadan, denizden ve küçük anlardan bir fotoğraf günlüğü.">
+  <title>küçük kara balık — doğaya yakın bir fotoğraf günlüğü</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --pine: #183d31;
+      --pine-dark: #102c24;
+      --moss: #637c4b;
+      --leaf: #a5bd75;
+      --paper: #f1f4e9;
+      --paper-deep: #e5ebda;
+      --ink: #20372d;
+      --muted: #68766a;
+      --line: rgba(24, 61, 49, .2);
+      --serif: "DM Serif Display", Georgia, serif;
+      --sans: "DM Sans", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; }
+    button { font: inherit; }
+    img { display: block; max-width: 100%; }
+    .shell { width: min(1320px, calc(100% - 96px)); margin-inline: auto; }
+
+    .hero {
+      min-height: 720px;
+      height: 88svh;
+      max-height: 980px;
+      position: relative;
+      isolation: isolate;
+      color: #fff;
+      background: var(--pine-dark);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(13, 37, 29, .74) 0%, rgba(13, 37, 29, .34) 51%, rgba(13, 37, 29, .03) 100%), linear-gradient(0deg, rgba(13, 37, 29, .25), transparent 40%);
+    }
+    .hero-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 54%; animation: arrive 1.4s ease-out both; }
+    .topbar { height: 96px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.34); }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; font-size: 15px; letter-spacing: .2px; }
+    .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.75); border-radius: 50%; font-family: var(--serif); font-size: 20px; line-height: 1; }
+    .nav { display: flex; align-items: center; gap: 34px; }
+    .nav a { color: #fff; text-decoration: none; font-size: 13px; transition: opacity .2s ease; }
+    .nav a:hover { opacity: .68; }
+    .hero-copy { position: absolute; top: 50%; left: max(48px, calc((100vw - 1320px) / 2)); transform: translateY(-39%); max-width: 820px; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; color: #dbe8c9; font-size: 12px; font-weight: 600; letter-spacing: 1.7px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--leaf); }
+    h1 { margin: 26px 0 20px; font: 112px/.91 var(--serif); letter-spacing: 0; font-weight: 400; }
+    h1 span { display: block; }
+    .hero-copy p { max-width: 410px; margin: 0; color: rgba(255,255,255,.88); font-size: 16px; line-height: 1.75; }
+    .hero-link { display: inline-flex; align-items: center; gap: 16px; margin-top: 34px; padding-bottom: 9px; border-bottom: 1px solid rgba(255,255,255,.7); color: #fff; text-decoration: none; font-size: 13px; font-weight: 600; }
+    .hero-link span { font-size: 19px; transition: transform .2s ease; }
+    .hero-link:hover span { transform: translateY(4px); }
+    .hero-index { position: absolute; right: max(48px, calc((100vw - 1320px) / 2)); bottom: 44px; writing-mode: vertical-rl; color: rgba(255,255,255,.78); font-size: 11px; letter-spacing: 1px; }
+
+    .intro { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 40px; padding-block: 98px 90px; }
+    .intro-label, .section-label { margin: 0 0 19px; color: var(--moss); font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; }
+    .intro h2, .about-copy h2 { max-width: 610px; margin: 0; font: 58px/1.05 var(--serif); font-weight: 400; }
+    .intro-note { max-width: 390px; justify-self: end; margin: 0 2vw 4px 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
+
+    .gallery-section {
+      padding: 78px 0 110px;
+      background-color: #dce9ea;
+      background-image: linear-gradient(rgba(226, 239, 240, .28), rgba(241, 244, 233, .42)), url("SON.jpg");
+      background-position: center, center 42%;
+      background-size: cover, cover;
+      background-attachment: scroll, fixed;
+      background-repeat: no-repeat;
+    }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 37px; }
+    .section-head h2 { margin: 0; font: 58px/1 var(--serif); font-weight: 400; }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter { padding: 10px 16px; border: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--ink); cursor: pointer; font-size: 12px; transition: color .2s ease, background .2s ease, border .2s ease; }
+    .filter:hover, .filter[aria-pressed="true"] { border-color: var(--pine); background: var(--pine); color: #fff; }
+    .gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 230px; gap: 14px; }
+    .photo { position: relative; min-width: 0; overflow: hidden; background: #d4ddc8; }
+    .photo[hidden] { display: none; }
+    .photo button { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: zoom-in; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.65,.3,1); }
+    .photo:hover img { transform: scale(1.045); }
+    .photo figcaption { position: absolute; right: 0; bottom: 0; left: 0; padding: 38px 17px 15px; background: linear-gradient(0deg, rgba(12,31,24,.78), transparent); color: white; font-family: var(--serif); font-size: 20px; pointer-events: none; }
+    .photo-wide { grid-column: span 2; }
+    .photo-tall { grid-row: span 2; }
+    .photo-tall img { object-position: center; }
+    .video-card { position: relative; min-width: 0; grid-column: span 2; grid-row: span 2; overflow: hidden; background: var(--pine-dark) url("WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.10_3ee77479.jpg") center / cover; }
+    .video-card video { width: 100%; height: 100%; object-fit: cover; background: transparent; color: #fff; }
+    .video-card a { color: #fff; }
+    .video-caption { position: absolute; top: 16px; left: 17px; padding: 8px 11px; background: var(--paper); color: var(--pine); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+    .about { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 10%; padding-block: 112px 120px; }
+    .about-image-wrap { position: relative; min-height: 480px; }
+    .about-image { width: 100%; height: 480px; object-fit: cover; object-position: 35% center; }
+    .image-note { position: absolute; right: -22px; bottom: 25px; padding: 14px 18px; background: var(--leaf); color: var(--pine-dark); font-family: var(--serif); font-size: 17px; transform: rotate(-2deg); }
+    .about-copy h2 { margin-bottom: 25px; }
+    .about-copy > p:not(.section-label) { max-width: 470px; color: var(--muted); font-size: 15px; line-height: 1.9; }
+    .about-signoff { display: inline-block; margin-top: 20px; color: var(--pine); font: 26px var(--serif); }
+
+    .closing { padding: 75px 0; background: var(--pine); color: #f4f5e9; }
+    .closing-inner { display: flex; align-items: center; justify-content: space-between; gap: 35px; }
+    .closing p { margin: 0; color: #d9e3ce; font-size: 13px; }
+    .closing h2 { margin: 10px 0 0; font: 45px/1.05 var(--serif); font-weight: 400; }
+    .back-top { display: inline-flex; align-items: center; gap: 14px; color: #fff; text-decoration: none; font-size: 13px; }
+    .back-top span { font-size: 22px; }
+    footer { padding: 23px 0; background: var(--pine-dark); color: rgba(255,255,255,.72); font-size: 11px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; }
+
+    .lightbox { position: fixed; inset: 0; z-index: 10; display: none; align-items: center; justify-content: center; padding: 36px; background: rgba(8, 21, 16, .94); }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: min(1100px, 90vw); max-height: 84vh; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 20px; right: 25px; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; font-size: 26px; line-height: 1; }
+    .lightbox-caption { position: absolute; bottom: 20px; color: #fff; font: 19px var(--serif); }
+    .reveal { animation: rise .8s ease both; }
+    @keyframes arrive { from { transform: scale(1.035); opacity: .6; } to { transform: scale(1); opacity: 1; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .shell { width: min(100% - 52px, 680px); }
+      .hero { min-height: 690px; height: 86svh; }
+      .hero-copy { left: 26px; max-width: 620px; }
+      h1 { font-size: 84px; }
+      .hero-index { right: 26px; }
+      .intro { grid-template-columns: 1fr; gap: 24px; padding-block: 76px; }
+      .intro-note { justify-self: start; margin: 0; }
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 220px; }
+      .about { gap: 7%; padding-block: 88px; }
+      .about-image-wrap, .about-image { min-height: 390px; height: 390px; }
+    }
+    @media (max-width: 600px) {
+      .shell { width: calc(100% - 40px); }
+      .hero { min-height: 680px; height: 88svh; max-height: 800px; }
+      .hero::before { background: linear-gradient(90deg, rgba(13,37,29,.62), rgba(13,37,29,.18)), linear-gradient(0deg, rgba(13,37,29,.42), transparent 65%); }
+      .hero-image { object-position: 43% center; }
+      .topbar { height: 76px; }
+      .brand { gap: 9px; font-size: 13px; }
+      .brand-mark { width: 30px; height: 30px; }
+      .nav { gap: 17px; }
+      .nav a { font-size: 11px; }
+      .nav a:last-child { display: none; }
+      .hero-copy { top: 52%; left: 20px; right: 20px; transform: translateY(-36%); }
+      .eyebrow { font-size: 10px; letter-spacing: 1.2px; }
+      h1 { margin-block: 22px 17px; font-size: 59px; line-height: .94; }
+      .hero-copy p { max-width: 320px; font-size: 14px; }
+      .hero-link { margin-top: 25px; }
+      .hero-index { right: 20px; bottom: 25px; font-size: 9px; }
+      .intro { padding-block: 66px 61px; }
+      .intro h2, .about-copy h2 { font-size: 43px; }
+      .intro-note { font-size: 14px; }
+      .gallery-section { padding: 62px 0 75px; }
+      .section-head { display: block; margin-bottom: 24px; }
+      .section-head h2 { font-size: 47px; }
+      .filters { margin-top: 22px; gap: 6px; }
+      .filter { padding: 9px 12px; font-size: 11px; }
+      .gallery { grid-auto-rows: 170px; gap: 9px; }
+      .photo figcaption { padding: 33px 11px 10px; font-size: 16px; }
+      .video-card { grid-column: span 2; grid-row: span 1; }
+      .about { grid-template-columns: 1fr; gap: 44px; padding-block: 70px 78px; }
+      .about-image-wrap, .about-image { min-height: 360px; height: 360px; }
+      .image-note { right: -7px; bottom: 16px; font-size: 15px; }
+      .closing { padding: 54px 0; }
+      .closing-inner { align-items: start; flex-direction: column; }
+      .closing h2 { font-size: 37px; }
+      .footer-inner { flex-direction: column; gap: 7px; }
+      .lightbox { padding: 18px; }
+      .lightbox img { max-width: 96vw; max-height: 76vh; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="baslangic">
+    <img class="hero-image" src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.10_3ee77479.jpg" alt="Yeşil yaylada eski bir dağ evi ve bulutlu gökyüzü">
+    <div class="shell topbar">
+      <a class="brand" href="#baslangic" aria-label="Küçük Kara Balık, ana sayfa"><span class="brand-mark" aria-hidden="true">k</span><span>küçük kara balık</span></a>
+      <nav class="nav" aria-label="Ana menü">
+        <a href="#hikaye">Hikâyem</a>
+        <a href="#fotograflar">Fotoğraflar</a>
+        <a href="#not">Bir not</a>
+      </nav>
+    </div>
+    <div class="hero-copy">
+      <div class="eyebrow">Doğaya yakın bir fotoğraf günlüğü</div>
+      <h1><span>küçük kara</span><span>balık</span></h1>
+      <p>Biraz deniz, biraz yeşil; yol boyunca biriktirdiğim küçük güzel şeyler.</p>
+      <a class="hero-link" href="#fotograflar">Fotoğraf günlüğüne bak <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="hero-index" aria-hidden="true">01 — YAVAŞLA, BAK, HATIRLA</div>
+  </header>
+
+  <main>
+    <section class="intro shell" aria-labelledby="intro-title">
+      <div>
+        <p class="intro-label">Yol üstü notları</p>
+        <h2 id="intro-title">Bazen en güzel şey, biraz durup bakmak.</h2>
+      </div>
+      <p class="intro-note">Dağların sessizliği, denizin değişen rengi, bir çiçeğin ışığa dönük yüzü. Bu sayfalarda, aklımda kalan manzaralara yer var.</p>
+    </section>
+
+    <section class="gallery-section" id="fotograflar" aria-labelledby="gallery-title">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="section-label">Kare kare hatıralar</p><h2 id="gallery-title">Fotoğraf günlüğü</h2></div>
+          <div class="filters" role="group" aria-label="Fotoğrafları filtrele">
+            <button class="filter" type="button" data-filter="all" aria-pressed="true">Tümü</button>
+            <button class="filter" type="button" data-filter="nature" aria-pressed="false">Doğa</button>
+            <button class="filter" type="button" data-filter="sea" aria-pressed="false">Deniz</button>
+            <button class="filter" type="button" data-filter="moments" aria-pressed="false">Anlar</button>
+            <button class="filter" type="button" data-filter="travel" aria-pressed="false">Yolculuk</button>
+          </div>
+        </div>
+        <div class="gallery">
+          <figure class="photo photo-wide" data-category="nature">
+            <button type="button" aria-label="Yeşil yayla fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.10_3ee77479.jpg" alt="Yeşil yaylaya bakan eski ahşap ev" loading="lazy"><figcaption>Yaylada bir sabah</figcaption></button>
+          </figure>
+          <figure class="photo photo-tall" data-category="sea">
+            <button type="button" aria-label="Balıkçı fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.06_52df6348.jpg" alt="Gün batımında oltasıyla balık tutan bir siluet" loading="lazy"><figcaption>Günün son ışığı</figcaption></button>
+          </figure>
+          <figure class="photo" data-category="nature">
+            <button type="button" aria-label="Çiçek fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.00_0ded35ea.jpg" alt="Koyu yeşillikler arasında açan turuncu bir çiçek" loading="lazy"><figcaption>Işığa dönen</figcaption></button>
+          </figure>
+          <figure class="photo" data-category="sea">
+            <button type="button" aria-label="Gün batımı fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2015.00.55_23b5d281.jpg" alt="Gün batımında deniz ve taşlı kıyı" loading="lazy"><figcaption>Deniz kıyısında</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="sea">
+            <button type="button" aria-label="Balıkçıların olduğu kıyı fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.07_1249a59e.jpg" alt="Gün doğarken kıyıda balık tutan iki kişi" loading="lazy"><figcaption>Sabırla beklerken</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="moments">
+            <button type="button" aria-label="Neon ışığında portre fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.15.20_c265fdd2.jpg" alt="Pembe ve mavi neon ışıklar önünde çekilmiş bir portre" loading="lazy"><figcaption>Neon ışığında</figcaption></button>
+          </figure>
+          <figure class="photo" data-category="sea">
+            <button type="button" aria-label="Alacakaranlık deniz fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.13_b6a53abc.jpg" alt="Alacakaranlıkta sakin deniz ve kıyı ışıkları" loading="lazy"><figcaption>Akşamın sesi</figcaption></button>
+          </figure>
+          <figure class="photo photo-tall" data-category="moments">
+            <button type="button" aria-label="Atölyedeki kişi fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.13.57_875c3332.jpg" alt="Resimlerle ve eski eşyalarla dolu küçük bir atölye" loading="lazy"><figcaption>Bir atölye hikâyesi</figcaption></button>
+          </figure>
+          <figure class="photo" data-category="sea">
+            <button type="button" aria-label="Kıyıdaki balıkçı fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.07_6f0af9de.jpg" alt="Güneş ufka inerken balık tutan bir kişi" loading="lazy"><figcaption>Ufka doğru</figcaption></button>
+          </figure>
+          <figure class="photo" data-category="sea">
+            <button type="button" aria-label="Köprü ve deniz fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.11_ae50f8d1.jpg" alt="Akşam ışığında köprü ve deniz" loading="lazy"><figcaption>Suyun üstünde ışık</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="sea">
+            <button type="button" aria-label="Gün batımı kıyı fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.14_86071de3.jpg" alt="Denizin üzerinde kızıl bir gün batımı" loading="lazy"><figcaption>Gün vedalaşırken</figcaption></button>
+          </figure>
+          <figure class="photo" data-category="sea">
+            <button type="button" aria-label="Denizde gün batımı fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2015.00.55_e3981fba.jpg" alt="Denizde pembe ve mor gün batımı" loading="lazy"><figcaption>Günün rengi</figcaption></button>
+          </figure>
+          <figure class="photo" data-category="sea">
+            <button type="button" aria-label="Balıkçı ve deniz fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.07_a8153576.jpg" alt="Deniz üzerinde gün batımı ve balıkçı silueti" loading="lazy"><figcaption>Yol arkadaşım deniz</figcaption></button>
+          </figure>
+          <figure class="photo photo-tall" data-category="sea">
+            <button type="button" aria-label="Bulutlu gün batımı fotoğrafını büyüt"><img src="WhatsApp%20G%C3%B6rsel%202024-08-19%20saat%2019.57.52_6036edc4.jpg" alt="Akşam bulutlarının deniz üzerindeki kızıl gün batımına eşlik ettiği kıyı" loading="lazy"><figcaption>Bulutlarda gün batımı</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="travel">
+            <button type="button" aria-label="Kapadokya'da balonlar fotoğrafını büyüt"><img src="20250913_055751.jpg" alt="Kapadokya'nın kaya oluşumları üzerinde yükselen sıcak hava balonu" loading="lazy"><figcaption>Günün ilk balonu</figcaption></button>
+          </figure>
+          <figure class="photo" data-category="travel">
+            <button type="button" aria-label="Alacakaranlıkta balonlar fotoğrafını büyüt"><img src="20250913_055953.jpg" alt="Alacakaranlık gökyüzünde farklı yüksekliklerde sıcak hava balonları" loading="lazy"><figcaption>Gökyüzüne karışırken</figcaption></button>
+          </figure>
+          <figure class="photo" data-category="travel">
+            <button type="button" aria-label="Siluet ve balon fotoğrafını büyüt"><img src="20250913_060101.jpg" alt="Ufukta yükselen balon ve önde bir insan silueti" loading="lazy"><figcaption>Ufka karşı</figcaption></button>
+          </figure>
+          <figure class="photo photo-tall" data-category="travel">
+            <button type="button" aria-label="Gün doğumunda balonlar fotoğrafını büyüt"><img src="20250913_060213.jpg" alt="Gün doğumunda Kapadokya üzerinde süzülen sıcak hava balonları" loading="lazy"><figcaption>Güne doğarken</figcaption></button>
+          </figure>
+          <figure class="photo" data-category="travel">
+            <button type="button" aria-label="Gökyüzündeki balonlar fotoğrafını büyüt"><img src="20250913_062144.jpg" alt="Geniş gökyüzüne dağılmış sıcak hava balonları" loading="lazy"><figcaption>Bir sürü küçük düş</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="travel">
+            <button type="button" aria-label="Kapadokya vadisindeki balonlar fotoğrafını büyüt"><img src="20250913_065758.jpg" alt="Kapadokya vadisi üzerinde yükselen balonlar" loading="lazy"><figcaption>Vadinin üstünde</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="travel">
+            <button type="button" aria-label="Kapadokya manzarası ve balonlar fotoğrafını büyüt"><img src="20250913_070240(1).jpg" alt="Kapadokya'nın taş evleri ve mavi gökyüzündeki balonlar" loading="lazy"><figcaption>Taşların arasından göğe</figcaption></button>
+          </figure>
+          <figure class="photo photo-tall" data-category="travel">
+            <button type="button" aria-label="Balonların önünde portre fotoğrafını büyüt"><img src="IMG-20250913-WA0090.jpg" alt="Balonlarla dolu gökyüzüne kollarını açan bir kişi" loading="lazy"><figcaption>Bir an, bir ömür</figcaption></button>
+          </figure>
+          <figure class="photo photo-tall" data-category="nature">
+            <button type="button" aria-label="Sisli bahçe fotoğrafını büyüt"><img src="20260208_161217.jpg" alt="Sisli bir yamaçta yeşil yaprakların arasından görünen doğa" loading="lazy"><figcaption>Sisli bahçede</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="nature">
+            <button type="button" aria-label="Bahçedeki kulübe fotoğrafını büyüt"><img src="20260208_161558.jpg" alt="Ağaçların arasında küçük, çatısı yıpranmış ahşap bir kulübe" loading="lazy"><figcaption>Bahçedeki eski kulübe</figcaption></button>
+          </figure>
+          <figure class="photo photo-tall" data-category="nature">
+            <button type="button" aria-label="Kış dalı fotoğrafını büyüt"><img src="20260208_161623.jpg" alt="Dalları gökyüzüne uzanan yapraksız bir ağaç" loading="lazy"><figcaption>Kışın çizgileri</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="nature">
+            <button type="button" aria-label="Ağaç silueti fotoğrafını büyüt"><img src="20260328_073147.jpg" alt="Koyu arka plan üzerinde dalları yayılan tek bir ağaç" loading="lazy"><figcaption>Ağacın sessizliği</figcaption></button>
+          </figure>
+          <figure class="photo photo-tall" data-category="nature">
+            <button type="button" aria-label="Ormanlık vadi fotoğrafını büyüt"><img src="20260912_100556.jpg" alt="Yoğun ormanlarla kaplı dağların arasından geçen vadi" loading="lazy"><figcaption>Yeşilin içine</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="nature">
+            <button type="button" aria-label="Dağ silsilesi fotoğrafını büyüt"><img src="20260912_122358.jpg" alt="Mavi gökyüzü altında uzak ve yüksek dağ silsilesi" loading="lazy"><figcaption>Dağların sessizliği</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="nature">
+            <button type="button" aria-label="Dağ vadisi fotoğrafını büyüt"><img src="20260912_122623.jpg" alt="Yeşil yamaçların çevrelediği yüksek dağ vadisi" loading="lazy"><figcaption>Yukarıya doğru</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="nature">
+            <button type="button" aria-label="Dağ deresindeki çiçekler fotoğrafını büyüt"><img src="20260912_124123(2).jpg" alt="Kayalık dağ deresinin kıyısında açan sarı çiçekler" loading="lazy"><figcaption>Suyun kenarında</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="nature">
+            <button type="button" aria-label="Yaylada bir hayvan fotoğrafını büyüt"><img src="20260912_125211.jpg" alt="Dağların arasında açık bir yaylada duran bir hayvan" loading="lazy"><figcaption>Yaylada bir karşılaşma</figcaption></button>
+          </figure>
+          <figure class="photo photo-wide" data-category="nature">
+            <button type="button" aria-label="Karlı dağlar fotoğrafını büyüt"><img src="20260912_125931.jpg" alt="Mavi gökyüzü altında kar izleri taşıyan yüksek dağlar" loading="lazy"><figcaption>Uzak zirveler</figcaption></button>
+          </figure>
+          <figure class="video-card" data-category="moments">
+            <video controls preload="metadata" playsinline aria-label="Küçük Kara Balık video günlüğü" poster="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.14.10_3ee77479.jpg">
+              <source src="WhatsApp%20Video%202026-08-08%20at%2014.44.26.mp4" type="video/mp4">
+              Tarayıcınız videoyu oynatamıyorsa <a href="WhatsApp%20Video%202026-08-08%20at%2014.44.26.mp4" target="_blank" rel="noreferrer">videoyu ayrı açın.</a>
+            </video>
+            <span class="video-caption">Yoldan bir kare · video</span>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="about shell" id="hikaye" aria-labelledby="about-title">
+      <div class="about-image-wrap">
+        <img class="about-image" src="WhatsApp%20G%C3%B6rsel%202024-06-27%20saat%2023.15.20_c265fdd2.jpg" alt="Pembe ve mavi neon ışıklar önünde çekilmiş bir portre" loading="lazy">
+        <span class="image-note">Kendi yolumda</span>
+      </div>
+      <div class="about-copy">
+        <p class="section-label">Biraz da benden</p>
+        <h2 id="about-title">Merhaba, ben küçük kara balık.</h2>
+        <p>Merak ettiğim yerlere yüzmeyi, yolda karşıma çıkan güzellikleri fark etmeyi seviyorum. Bazen bir çiçek, bazen eve dönüş yolundaki gökyüzü… Fotoğraflar, durup baktığım anlardan geriye kalanlar.</p>
+        <p>Bu küçük köşe de o anları biriktirmek için.</p>
+        <span class="about-signoff">Sevgiyle,</span>
+      </div>
+    </section>
+
+    <section class="closing" id="not">
+      <div class="shell closing-inner">
+        <div><p>Bir küçük hatırlatma</p><h2>Yavaşla. Bak. İçinde kal.</h2></div>
+        <a class="back-top" href="#baslangic">Başa dön <span aria-hidden="true">↑</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell footer-inner"><span>© 2026 küçük kara balık</span><span>Doğadan ve yoldan ilhamla.</span></div></footer>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Büyütülmüş fotoğraf">
+    <button class="lightbox-close" type="button" aria-label="Fotoğrafı kapat">×</button>
+    <img src="" alt="">
+    <p class="lightbox-caption"></p>
+  </div>
+
+  <script>
+    const filters = document.querySelectorAll(".filter");
+    const galleryItems = document.querySelectorAll(".gallery [data-category]");
+    const lightbox = document.querySelector(".lightbox");
+    const lightboxImage = lightbox.querySelector("img");
+    const lightboxCaption = lightbox.querySelector(".lightbox-caption");
+    const closeButton = lightbox.querySelector(".lightbox-close");
+    let previouslyFocused;
+
+    filters.forEach((filter) => {
+      filter.addEventListener("click", () => {
+        const selected = filter.dataset.filter;
+        filters.forEach((button) => button.setAttribute("aria-pressed", String(button === filter)));
+        galleryItems.forEach((item) => {
+          item.hidden = selected !== "all" && item.dataset.category !== selected;
+        });
+      });
+    });
+
+    document.querySelectorAll(".photo button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const image = button.querySelector("img");
+        previouslyFocused = button;
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxCaption.textContent = button.querySelector("figcaption").textContent;
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+        closeButton.focus();
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      document.body.style.overflow = "";
+      lightboxImage.removeAttribute("src");
+      previouslyFocused?.focus();
+    }
+
+    closeButton.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+    });
+  </script>
+</body>
+</html>
